@@ -16,7 +16,7 @@ class AttributeController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Attributes::paginate(30),
+            "response" => Attributes::paginate(30),
             "message" => "The List of All Attributes"
         ];
         return $response;
@@ -32,7 +32,7 @@ class AttributeController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Attributes::create($request->all()),
+            "response" => array("data" => Attributes::create($request->all())),
             "message" => "The Attribute is created!"
         ];
         return $response;
@@ -48,7 +48,7 @@ class AttributeController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Attributes::find($id),
+            "response" => array("data" => Attributes::find($id)),
             "message" => "The Singal Attribute!"
         ];
         return $response;
@@ -68,7 +68,7 @@ class AttributeController extends Controller
 
         $response = [
             "status" => 200,
-            "data" => $sneaker,
+            "response" => array("data" => $sneaker),
             "message" => "The Singal Attribute Updated!"
         ];
         return $response;

@@ -16,7 +16,7 @@ class VariationController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Variations::paginate(30),
+            "response" => Variations::paginate(30),
             "message" => "The List of All Variations"
         ];
         return $response;
@@ -32,7 +32,7 @@ class VariationController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Variations::create($request->all()),
+            "response" => array("data" => Variations::create($request->all())),
             "message" => "The Variation is created!"
         ];
         return $response;
@@ -48,7 +48,7 @@ class VariationController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Variations::find($id),
+            "response" => array("data" => Variations::find($id)),
             "message" => "The Singal Variation!"
         ];
         return $response;
@@ -68,7 +68,7 @@ class VariationController extends Controller
 
         $response = [
             "status" => 200,
-            "data" => $sneaker,
+            "response" => array("data" => $sneaker),
             "message" => "The Singal Variation Updated!"
         ];
         return $response;

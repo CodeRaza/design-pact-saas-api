@@ -16,7 +16,7 @@ class DesignController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Design::paginate(30),
+            "response" => Design::paginate(30),
             "message" => "The List of All Designs"
         ];
         return $response;
@@ -32,7 +32,7 @@ class DesignController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Design::create($request->all()),
+            "response" => array( "data" => Design::create($request->all())),
             "message" => "The Design is created!"
         ];
         return $response;
@@ -48,7 +48,7 @@ class DesignController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Design::find($id),
+            "response" => array("data" => Design::find($id)),
             "message" => "The Singal Design!"
         ];
         return $response;
@@ -68,7 +68,7 @@ class DesignController extends Controller
 
         $response = [
             "status" => 200,
-            "data" => $sneaker,
+            "response" => array("data" => $sneaker),
             "message" => "The Singal Design Updated!"
         ];
         return $response;

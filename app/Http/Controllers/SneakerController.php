@@ -16,7 +16,7 @@ class SneakerController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Sneaker::paginate(30),
+            "response" => Sneaker::paginate(30),
             "message" => "The List of All Sneakers"
         ];
         return $response;
@@ -32,7 +32,7 @@ class SneakerController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Sneaker::create($request->all()),
+            "response" => array("data" => Sneaker::create($request->all())),
             "message" => "The Sneakers is created!"
         ];
         return $response;
@@ -48,7 +48,7 @@ class SneakerController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Sneaker::find($id),
+            "response" => array("data" => Sneaker::find($id)),
             "message" => "The Singal Sneakers!"
         ];
         return $response;
@@ -68,7 +68,7 @@ class SneakerController extends Controller
 
         $response = [
             "status" => 200,
-            "data" => $sneaker,
+            "response" => array("data" => $sneaker),
             "message" => "The Singal Sneakers Updated!"
         ];
         return $response;
