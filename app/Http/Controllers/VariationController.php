@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Sneaker;
+use App\Models\Variations;
 
-class SneakerController extends Controller
+class VariationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class SneakerController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Sneaker::paginate(30),
-            "message" => "The List of All Sneakers"
+            "data" => Variations::paginate(30),
+            "message" => "The List of All Variations"
         ];
         return $response;
     }
@@ -32,8 +32,8 @@ class SneakerController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Sneaker::create($request->all()),
-            "message" => "The Sneakers is created!"
+            "data" => Variations::create($request->all()),
+            "message" => "The Variation is created!"
         ];
         return $response;
     }
@@ -48,8 +48,8 @@ class SneakerController extends Controller
     {
         $response = [
             "status" => 200,
-            "data" => Sneaker::find($id),
-            "message" => "The Singal Sneakers!"
+            "data" => Variations::find($id),
+            "message" => "The Singal Variation!"
         ];
         return $response;
     }
@@ -63,13 +63,13 @@ class SneakerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sneaker = Sneaker::find($id);
+        $sneaker = Variations::find($id);
         $sneaker->update($request->all());
 
         $response = [
             "status" => 200,
             "data" => $sneaker,
-            "message" => "The Singal Sneakers Updated!"
+            "message" => "The Singal Variation Updated!"
         ];
         return $response;
     }
@@ -82,6 +82,6 @@ class SneakerController extends Controller
      */
     public function destroy($id)
     {
-        return Sneaker::destroy($id);
+        return Variations::destroy($id);
     }
 }

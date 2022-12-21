@@ -5,19 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sneaker extends Model
+class Attributes extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title',
+        'name',
         'slug',
-        'size',
-        'color',
-        'author',
-        'publish',
-        'category',
-        'discription',
-        'type',
-        'name'
+        'group',
+        'taxonomy_id',
+        'taxonomy',
+        'description',
+        'parent',
+        'count'
     ];
 }

@@ -13,18 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sneakers', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('slug');
-            $table->string('size');
-            $table->string('color');
-            $table->string('author');
-            $table->boolean('publish');
-            $table->string('category');
-            $table->string('type');
+        Schema::create('attributes', function (Blueprint $table) {
+            $table->id()->unique();
             $table->string('name');
-            $table->string('discription');
+            $table->string('slug');
+            $table->string('group');
+            $table->string('taxonomy_id');
+            $table->string('taxonomy');
+            $table->string('description');
+            $table->string('parent');
+            $table->string('count');
             $table->timestamps();
         });
     }
@@ -36,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sneakers');
+        //
     }
 };
