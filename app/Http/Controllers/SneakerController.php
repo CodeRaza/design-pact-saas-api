@@ -23,6 +23,77 @@ class SneakerController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filter(Request $request, Sneaker $sneaker)
+    {
+        $sneaker = $sneaker->newQuery();
+
+        // if ($request->has('title')) {
+        //     $sneaker->where('title', $request->title)->get();
+        // }
+
+        // if ($request->has('slug')) {
+        //     $sneaker->where('slug', $request->slug)->get();
+        // }
+
+        // if ($request->has('size')) {
+        //     $sneaker->where('size', $request->size)->get();
+        // }
+
+        // if ($request->has('color')) {
+        //     $sneaker->where('color', $request->color)->get();
+        // }
+
+        // if ($request->has('author')) {
+        //     $sneaker->where('author',$request->author)->get();
+        // }
+
+        // if ($request->has('publish')) {
+        //     $sneaker->where('publish', $request->publish)->get();
+        // }
+
+        // if ($request->has('category')) {
+        //     $sneaker->where('category', $request->category)->get();
+        // }
+
+        // if ($request->has('discription')) {
+        //     $sneaker->where('discription', $request->discription)->get();
+        // }
+
+        // if ($request->has('type')) {
+        //     $sneaker->where('type', $request->type)->get();
+        // }
+
+        // if ($request->has('name')) {
+        //     $sneaker->where('name', $request->name)->get();
+        // }
+
+        $sneaker->where('title', $request->title)
+            ->orWhere('slug', $request->slug)
+            ->orWhere('size', $request->size)
+            ->orWhere('color', $request->color)
+            ->orWhere('author', $request->author)
+            ->orWhere('publish', $request->publish)
+            ->orWhere('category', $request->category)
+            ->orWhere('description', $request->description)
+            ->orWhere('type', $request->type)
+            ->orWhere('name', $request->name);
+
+        $data = $sneaker->get();
+        
+        $response = [
+            "status" => 200,
+            "response" => array('data' => $data),
+            "message" => "The List of All Filtered Sneakers"
+        ];
+        return $response;
+    
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('group');
             $table->string('taxonomy_id');
             $table->string('taxonomy');
-            $table->string('description');
+            $table->string('description')->nullable();;
             $table->string('parent');
             $table->string('count');
             $table->timestamps();

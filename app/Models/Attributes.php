@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Attributes extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
         'slug',

@@ -23,6 +23,40 @@ class AttributeController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filter(Request $request, attributes $attributes)
+    {
+        $attributes = $attributes->newQuery();
+
+        if ($request->has('attribute_name')) {
+           
+            $attributes->where('taxonomy', 'pa_'.$request->input('attribute_name'))->get();
+        
+            if($request->has('search')){
+                $attributes->where('slug', $request->input('search'))->get();
+            }
+
+            $data = $attributes->get();
+
+            $response = [
+                "status" => 200,
+                "response" => array('data' => $data),
+                "message" => "The List of All Filtered Variations"
+            ];
+            return $response;
+        }  else {
+            $response = [
+                "status" => 404,
+                "message" => "Please Enter attribute_name Parameters!"
+            ];
+            return $response;
+        }
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

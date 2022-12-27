@@ -14,6 +14,7 @@ class VariationController extends Controller
      */
     public function index()
     {
+
         $response = [
             "status" => 200,
             "response" => Variations::paginate(30),
@@ -21,6 +22,38 @@ class VariationController extends Controller
         ];
         return $response;
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+    */
+    public function filter(Request $request, Variations $variations)
+    {
+        $variations = $variations->newQuery();
+
+        if ($request->has('product_type')) {
+            $variations->where('product_type', $request->input('product_type'))->get();
+        }
+    
+        if ($request->has('product_color')) {
+            $variations->where('product_color', $request->input('product_color'))->get();
+        }
+
+        if ($request->has('product_size')) {
+            $variations->where('product_size', $request->input('product_size'))->get();
+        }
+
+        $data = $variations->get();
+
+        $response = [
+            "status" => 200,
+            "response" => array('data' => $data),
+            "message" => "The List of All Filtered Variations"
+        ];
+        return $response;
+    }
+
 
     /**
      * Store a newly created resource in storage.

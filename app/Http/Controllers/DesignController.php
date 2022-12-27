@@ -23,6 +23,37 @@ class DesignController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filter(Request $request, Design $design)
+    {
+        $design = $design->newQuery();
+
+        $design->where('title', $request->title)
+            ->orWhere('slug', $request->slug)
+            ->orWhere('size', $request->size)
+            ->orWhere('color', $request->color)
+            ->orWhere('author', $request->author)
+            ->orWhere('publish', $request->publish)
+            ->orWhere('category', $request->category)
+            ->orWhere('meta_key', $request->meta_key)
+            ->orWhere('meta_value', $request->meta_value);
+
+        $data = $design->get();
+    
+        $response = [
+            "status" => 200,
+            "response" => array('data' => $data),
+            "message" => "The List of All Filtered Designs"
+        ];
+        return $response;
+
+
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
