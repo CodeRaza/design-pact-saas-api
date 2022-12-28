@@ -71,16 +71,28 @@ class SneakerController extends Controller
         //     $sneaker->where('name', $request->name)->get();
         // }
 
-        $sneaker->where('title', $request->title)
+        
+
+        $sneaker
+            ->where('title', $request->title)
             ->orWhere('slug', $request->slug)
-            ->orWhere('size', $request->size)
-            ->orWhere('color', $request->color)
             ->orWhere('author', $request->author)
             ->orWhere('publish', $request->publish)
-            ->orWhere('category', $request->category)
             ->orWhere('description', $request->description)
             ->orWhere('type', $request->type)
             ->orWhere('name', $request->name);
+
+        if ($request->has('size')) {
+            $sneaker->orWhereIn('size', $request->size)->get();
+        }
+
+        if ($request->has('color')) {
+            $sneaker->orWhereIn('color', $request->color)->get();
+        }
+
+        if ($request->has('category')) {
+            $sneaker->orWhereIn('category', $request->category)->get();
+        }
 
         $data = $sneaker->get();
         
@@ -89,6 +101,7 @@ class SneakerController extends Controller
             "response" => array('data' => $data),
             "message" => "The List of All Filtered Sneakers"
         ];
+        
         return $response;
     
     }

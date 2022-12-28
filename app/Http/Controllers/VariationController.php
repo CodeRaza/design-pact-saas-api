@@ -33,16 +33,22 @@ class VariationController extends Controller
         $variations = $variations->newQuery();
 
         if ($request->has('product_type')) {
-            $variations->where('product_type', $request->input('product_type'))->get();
+            $variations->whereIn('product_type', $request->input('product_type'))->get();
         }
     
         if ($request->has('product_color')) {
-            $variations->where('product_color', $request->input('product_color'))->get();
+            $variations->whereIn('product_color', $request->input('product_color'))->get();
         }
 
         if ($request->has('product_size')) {
-            $variations->where('product_size', $request->input('product_size'))->get();
+            $variations->whereIn('product_size', $request->input('product_size'))->get();
         }
+
+        // $variations
+        //     ->whereIn('product_type', $request->product_type)
+        //     ->orWhereIn('product_color', $request->product_color)
+        //     ->orWhereIn('product_size', $request->product_size);
+            
 
         $data = $variations->get();
 

@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
+use App\Models\Sneaker;
+
 
 class UserSeeder extends Seeder
 {
@@ -70,6 +72,19 @@ class UserSeeder extends Seeder
 
         $user_role->givePermissionTo([
             $user_list,
+        ]);
+
+        Sneaker::create([
+            'title' => 'Nike Air Max',
+            'slug' => 'nike-air-max',
+            'size' => '9',
+            'color' => 'white',
+            'author' => 'Nike',
+            'publish' => 1,
+            'category' => 'Men',
+            'description' => 'The Nike Air Max is a classic sneaker with a comfortable fit and stylish design.',
+            'type' => 'Running',
+            'name' => 'Air Max',
         ]);
     }
 }

@@ -33,10 +33,10 @@ class AttributeController extends Controller
 
         if ($request->has('attribute_name')) {
            
-            $attributes->where('taxonomy', 'pa_'.$request->input('attribute_name'))->get();
+            $attributes->whereIn('taxonomy', $request->input('attribute_name'))->get();
         
             if($request->has('search')){
-                $attributes->where('slug', $request->input('search'))->get();
+                $attributes->whereIn('slug', $request->input('search'))->get();
             }
 
             $data = $attributes->get();

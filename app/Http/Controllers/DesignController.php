@@ -33,13 +33,22 @@ class DesignController extends Controller
 
         $design->where('title', $request->title)
             ->orWhere('slug', $request->slug)
-            ->orWhere('size', $request->size)
-            ->orWhere('color', $request->color)
             ->orWhere('author', $request->author)
             ->orWhere('publish', $request->publish)
-            ->orWhere('category', $request->category)
             ->orWhere('meta_key', $request->meta_key)
             ->orWhere('meta_value', $request->meta_value);
+
+        if ($request->has('size')) {
+            $design->orWhereIn('size', $request->size)->get();
+        }
+
+        if ($request->has('color')) {
+            $design->orWhereIn('color', $request->color)->get();
+        }
+
+        if ($request->has('category')) {
+            $design->orWhereIn('category', $request->category)->get();
+        }
 
         $data = $design->get();
     
